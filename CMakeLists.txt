@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.21)
+set(CMAKE_CXX_STANDARD 20)
+
+project(histogram)
+add_executable(histogram histogram.cpp)
+
+project(bubblesort)
+add_executable(bubblesort bubblesort.cpp)
+
+project(insertionsort)
+add_executable(insertsort insertionsort.cpp)
+
+project(maximizer)
+add_executable(maximizer maximizer.cpp)
