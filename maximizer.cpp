@@ -18,6 +18,7 @@ int main() {
         cout << numbers.at(i) << " ";
     }
     cout << "\n";
+
     for (int i = 1; i < numbers.size(); i++) {
         int key = numbers[i];
         for (int j = i - 1; j > -1; j--) {
