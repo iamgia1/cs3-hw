@@ -9,7 +9,6 @@ int main() {
     vector < int > numbers;
     // ask user to enter 10 numbers
     cout << "Enter 10 numbers: " << "\n";
-    cin >> input;
     for (int i = 0; i < 10; i++) {
         cin >> input;
         numbers.insert(numbers.end(), stoi(input));
