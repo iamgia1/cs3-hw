@@ -12,3 +12,6 @@ add_executable(insertsort insertionsort.cpp)
 
 project(maximizer)
 add_executable(maximizer maximizer.cpp)
+
+project(maximizerdos)
+add_executable(maximizerdos maximizerdos.cpp)
