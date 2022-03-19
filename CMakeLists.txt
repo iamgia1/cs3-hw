@@ -15,3 +15,6 @@ add_executable(maximizer maximizer.cpp)
 
 project(maximizerdos)
 add_executable(maximizerdos maximizerdos.cpp)
+
+project(carteblanche)
+add_executable(carteblanche carteblanche.cpp)
