@@ -18,3 +18,9 @@ add_executable(maximizerdos maximizerdos.cpp)
 
 project(carteblanche)
 add_executable(carteblanche carteblanche.cpp)
+
+project(DifferenceMaker)
+add_executable(DifferenceMaker DifferenceMaker.cpp)
+
+project(TickTacToeTask)
+add_executable(TickTacToeTask TicTacToeTask.cpp)
