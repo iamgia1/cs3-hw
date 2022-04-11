@@ -20,10 +20,23 @@ vector<vector<string>> grid {
     {" "," "," "},
     {" "," "," "}
 };
-int winner() {
-
+string winner() {
+return " ";
 }
 void drawGrid() {
+    for (int i = 0; i < grid.size();i++) {
+            for (int j = 0; j < grid[i].size(); j++) {
+                if (j % 2 != 0) {
+                    cout << " | " << grid[i][j] << " | ";
+                } else {
+                    cout << grid[i][j];
+                }
+            }
+            if (i != grid.size() -1) {
+                cout << "\n- + - + -\n";
+            }
+    }
+    cout << "\n";
 }
 bool checkInteger(string input) {
     // credit * https://java2blog.com/check-if-input-is-integer-in-cpp/?msclkid=165fc59da7cf11ecb9b0d45227fb2985
@@ -41,42 +54,59 @@ bool checkInteger(string input) {
     return true;
 }
 int main() {
-    int inputX;
-    int inputY;
+    int rowX;
+    int colY;
+    string winner = " ";
     string inputStrX;
     string inputStrY;
     string currentPlayer = "X";
     bool done = false;
-    cout << "Moves are in the format \"x y\" with x being columns and y being rows" << endl;
-    cout << "Choose whether to play Player X or Player Y:" ;
+    cout << "To choose a position enter in the row number then in the column number 0,2 :" << "\n";
     while (!done) {
         cout << "Player " << currentPlayer << " move: \n";
         cin >> inputStrX;
         cin >> inputStrY;
         // gives the coordinates that the player wants to position
-        if (checkInteger(inputStrX.substr(0, 1))) {
-            inputX = stoi(inputStrX.substr(0, 1));
+        if (checkInteger(inputStrX)) {
+            rowX = stoi(inputStrX);
+            if(rowX < 0 || rowX > 2){
+                cout << "input out of bounds\n";
+                continue;
+            }
         } else {
+            cout << "invalid X \n";
             continue;
         }
-        if (checkInteger(inputStrY.substr(1, 2))) {
-            inputY = stoi(inputStrY.substr(1, 2));
+        if (checkInteger(inputStrY)) {
+            colY = stoi(inputStrY);
+            if(colY < 0 || colY > 2) {
+                cout << "input out of bounds\n";
+                continue;
+            }
         } else {
+            cout << "invalid Y \n";
             continue;
         }
-        if (grid.at(inputX).at(inputY) != " ") {
-            grid.at(inputX).at(inputY) = currentPlayer;
+        // checking if there is a space there and filling that space with current player
+        if (grid.at(rowX).at(colY) == " ") {
+            grid.at(rowX).at(colY) = currentPlayer;
+        } else {
+            cout << "move already taken \n";
+            continue;
         }
-        // function to check once a turn is over to move onto Player Y
-
         // draw a board with the players input
-        for (int i = 0; i < grid.size(); i++) {
-            for (int j = 0; j < grid[i].size(); j++) {
-                cout << grid[j][i] << " ";
-                cout << "\n";
+        drawGrid();
+        // detect the winner
+        winner = ::winner();
+        if (winner == "X" || winner == "Y") {
+            done = true;
+        } else {
+            if (currentPlayer == "X") {
+                currentPlayer = "Y";
+            } else {
+                currentPlayer = "X";
             }
         }
-        drawGrid();
-        done = true;
+
     }
 }
