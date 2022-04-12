@@ -1,40 +1,67 @@
 #include<iostream>
+
 #include<string>
+
 #include<vector>
 
 
 using namespace std;
-
-// TODO 2D Vector of strings
-
-// TODO to ask the user for player one input
-
-// TODO draw the board with their input
-
-// TODO check if there is a winner
-
-// TODO repeat with player two
-
-vector<vector<string>> grid {
-    {" "," "," "},
-    {" "," "," "},
-    {" "," "," "}
+vector < vector < string >> grid {
+        {
+                " ",
+                " ",
+                " "
+        }, {
+                " ",
+                " ",
+                " "
+        }, {
+                " ",
+                " ",
+                " "
+        }
 };
-string winner() {
-return " ";
+bool winner(string player) {
+    for (int i = 0; i < grid.size(); i++) {
+        for (int j = 0; j < grid[i].size(); j++) {
+            if (grid[i][j] != player) {
+                //  the for loop goes as long as j < grid i.size
+                j = grid[i].size();
+            } else if (j == grid.size() - 1) {
+                return true;
+            }
+        }
+    }
+    for (int i = 0; i < grid.size(); i++) {
+        for (int j = 0; j < grid[i].size(); j++) {
+            if (grid[j][i] != player) {
+                j = grid[i].size();
+            } else if (j == grid.size() - 1) {
+                return true;
+            }
+        }
+    }
+    // diagonals
+    if (grid.at(0).at(0) == player && grid.at(1).at(1) == player && grid.at(2).at(2) == player) {
+        return true;
+    }
+    if (grid.at(2).at(0) == player && grid.at(1).at(1) == player && grid.at(0).at(2) == player) {
+        return true;
+    }
+    return false;
 }
 void drawGrid() {
-    for (int i = 0; i < grid.size();i++) {
-            for (int j = 0; j < grid[i].size(); j++) {
-                if (j % 2 != 0) {
-                    cout << " | " << grid[i][j] << " | ";
-                } else {
-                    cout << grid[i][j];
-                }
+    for (int i = 0; i < grid.size(); i++) {
+        for (int j = 0; j < grid[i].size(); j++) {
+            if (j % 2 != 0) {
+                cout << " | " << grid[i][j] << " | ";
+            } else {
+                cout << grid[i][j];
             }
-            if (i != grid.size() -1) {
-                cout << "\n- + - + -\n";
-            }
+        }
+        if (i != grid.size() - 1) {
+            cout << "\n- + - + -\n";
+        }
     }
     cout << "\n";
 }
@@ -56,7 +83,6 @@ bool checkInteger(string input) {
 int main() {
     int rowX;
     int colY;
-    string winner = " ";
     string inputStrX;
     string inputStrY;
     string currentPlayer = "X";
@@ -69,7 +95,7 @@ int main() {
         // gives the coordinates that the player wants to position
         if (checkInteger(inputStrX)) {
             rowX = stoi(inputStrX);
-            if(rowX < 0 || rowX > 2){
+            if (rowX < 0 || rowX > 2) {
                 cout << "input out of bounds\n";
                 continue;
             }
@@ -79,7 +105,7 @@ int main() {
         }
         if (checkInteger(inputStrY)) {
             colY = stoi(inputStrY);
-            if(colY < 0 || colY > 2) {
+            if (colY < 0 || colY > 2) {
                 cout << "input out of bounds\n";
                 continue;
             }
@@ -97,9 +123,9 @@ int main() {
         // draw a board with the players input
         drawGrid();
         // detect the winner
-        winner = ::winner();
-        if (winner == "X" || winner == "Y") {
+        if (::winner(currentPlayer)) {
             done = true;
+            cout << "The winner is " << currentPlayer;
         } else {
             if (currentPlayer == "X") {
                 currentPlayer = "Y";
