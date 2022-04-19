@@ -24,3 +24,6 @@ add_executable(DifferenceMaker DifferenceMaker.cpp)
 
 project(TickTacToeTask)
 add_executable(TickTacToeTask TicTacToeTask.cpp)
+
+project(Spacethefinalfrontier)
+add_executable(Spacethefinalfrontier spacethefinalfrontier.cpp)
